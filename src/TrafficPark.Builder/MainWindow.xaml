@@ -1,0 +1,124 @@
+﻿<Window x:Class="TrafficPark.Builder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrafficPark.Builder.ViewModel"
+        mc:Ignorable="d"
+        Title="Traffic Park Builder"
+        DataContext="{Binding Path=MainViewModel, Source={StaticResource ViewModelLocator}}">
+    <StackPanel>
+        <!--
+        <Ribbon Name="TrafficParkBuilderMainRibbon">
+            <Ribbon.HelpPaneContent>
+                <RibbonButton Name="HelpButton" Label="Help"/>
+            </Ribbon.HelpPaneContent>
+        </Ribbon>
+        -->
+        <ToolBar Name="TrafficParkBuilderMainMenu">
+            <Menu>
+                <MenuItem Header="Menu">
+                    <MenuItem Header="MenuItem 1"/>
+                </MenuItem>
+            </Menu>
+            <Button Content="Button 1"></Button>
+            <Button Content="Button 2"></Button>
+        </ToolBar>
+        <TabControl x:Name="TrafficParkTabControl"
+            IsEnabled="True"
+            IsSynchronizedWithCurrentItem="True"
+            ItemsSource="{Binding Path=TrafficParks}"
+            SelectedItem="0"
+            Visibility="Visible">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <!-- TODO: Converter here in case ViewModel considers this tab isn't active enough. -->
+                    <Setter Property="Background"  Value="{Binding IsActive, Mode=OneWay}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter ContentSource="Header" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="HotPink" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TabControl.ItemContainerStyle>
+
+            <!-- For more explanation about combining event handling and commands on switching the tab and the command binding,
+             see at http://blog.galasoft.ch/posts/2014/01/using-the-eventargsconverter-in-mvvm-light-and-why-is-there-no-eventtocommand-in-the-windows-8-1-version/
+        -->
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:TrafficParkViewModel}">
+                    <TextBlock Text="{Binding Name}"/>
+                    <!--
+                <Button Background="{x:Null}"
+                    Content="{Binding Name}"
+                    Command="{Binding TabSwitchCommand}"
+                    CommandParameter="{Binding ElementName=mainsTabControl, Path=SelectedItem}"
+                    FocusVisualStyle="{x:Null}" />
+                -->
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type local:TrafficParkViewModel}">
+
+                    <!-- TODO:
+                     1. The traffic signs should be spread over the canvas according to their coordinates.
+                     2. The traffic signs can have an icon, can be some custom geometry and can have additional, changing text in them. This is represented in the viewmodel.
+                     3. The traffic signs can open a pop-up. This could be a DataTemplate based on the ViewModel type and its state. Further, for each sign the pop could be different.
+                        Maybe we should pass this ViewModel along with the underlying DTO to the pop-up (at least the DTO).
+
+                     How should the signs be modeled? Here we write "signs", and even if signs can be quite different, this expands nicely to "track building" in the future in that
+                     we can assemble various kinds of blocks of road to there too.
+
+                     Certain is that the traffic signs shouldn't be in a stack!
+                  -->
+                    <ItemsControl ItemsSource="{Binding TrafficSigns}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="{Binding Left}"/>
+                                <Setter Property="Canvas.Top" Value="{Binding Top}"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:TrafficSignViewModel}">
+                                <TextBlock  ToolTip="Here I am..." Text="{Binding Name, Mode=OneWay}" Background="Aquamarine" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+
+                <!--
+                    <ItemsControl Margin="10"
+                          VerticalAlignment="Top"
+                          ItemsSource="{Binding Path=TrafficSigns}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:TrafficSignViewModel}">
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+                    -->
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </StackPanel>
+</Window>

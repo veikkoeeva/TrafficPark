@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficPark.Builder", "src\TrafficPark.Builder\TrafficPark.Builder.csproj", "{983C91B9-CC8E-4BE8-B819-1F9CDF4EA283}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficPark.Tests", "tests\TrafficPark.Tests\TrafficPark.Tests.csproj", "{C953AEE3-73DB-4437-81C0-EADAC20A4234}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inc", "Inc", "{5AC625A2-9117-466E-9A0D-DC661F4F615A}"
+	ProjectSection(SolutionItems) = preProject
+		src\Inc\GlobalAssemblyInfo.cs = src\Inc\GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrafficPark.Database", "src\TrafficPark.Builder.Database\TrafficPark.Database.sqlproj", "{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficPark.DatabaseUnitTests", "tests\TrafficPark.DatabaseUnitTests\TrafficPark.DatabaseUnitTests.csproj", "{3410F4AE-2825-4529-BC77-EB1BF8DC43DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{983C91B9-CC8E-4BE8-B819-1F9CDF4EA283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983C91B9-CC8E-4BE8-B819-1F9CDF4EA283}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983C91B9-CC8E-4BE8-B819-1F9CDF4EA283}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983C91B9-CC8E-4BE8-B819-1F9CDF4EA283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C953AEE3-73DB-4437-81C0-EADAC20A4234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C953AEE3-73DB-4437-81C0-EADAC20A4234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C953AEE3-73DB-4437-81C0-EADAC20A4234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C953AEE3-73DB-4437-81C0-EADAC20A4234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E397A8-0AEC-45B7-B4EE-D61F814B8AD0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3410F4AE-2825-4529-BC77-EB1BF8DC43DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3410F4AE-2825-4529-BC77-EB1BF8DC43DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3410F4AE-2825-4529-BC77-EB1BF8DC43DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3410F4AE-2825-4529-BC77-EB1BF8DC43DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
